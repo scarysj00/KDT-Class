@@ -25,7 +25,7 @@ public:
 		return Level;
 	}
 
-private:
+private:   
 	string Name;
 	int Level = 0;
 };
