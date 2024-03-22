@@ -1,21 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 #pragma once
 class FAllPlayerLogout
 {
+	FAllPlayerLogout();
 };
-
-=======
-#pragma once
-class FAllPlayerLogout
-{
-};
-
->>>>>>> 57cea7892c199d493e4d52931ecbe182153bbf31
-=======
-#pragma once
-class FAllPlayerLogout
-{
-};
-
->>>>>>> 57cea7892c199d493e4d52931ecbe182153bbf31

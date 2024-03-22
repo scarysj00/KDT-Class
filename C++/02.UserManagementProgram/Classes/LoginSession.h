@@ -5,6 +5,7 @@
 
 class FLoginSession
 {
+	friend class FDataBase;
 public:
 	pair<FPlayer*, const char*> Login(const FAccount& InAccount);
 	bool IsLogin(const FAccountName& InAccountName);

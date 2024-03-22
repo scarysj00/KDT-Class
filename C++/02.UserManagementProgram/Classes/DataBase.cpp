@@ -1,5 +1,6 @@
 #include "DataBase.h"
 #include "Player.h"
+#include "LoginSession.h"
 
 FDataBase GDataBase;
 
@@ -97,8 +98,6 @@ FDataBase::~FDataBase()
 	SaveAccount();
 }
 
-
-
 void FDataBase::SaveAccount()
 {
 	rapidjson::Document Doc(rapidjson::kObjectType);
@@ -131,13 +130,13 @@ void FDataBase::LoadAccount()
 		return;
 	}
 
-	std::string Json;
-	std::string TempLine;
-	while (std::getline(File, TempLine))
+	string Json;
 	{
-		Json += TempLine;
+		string Temp;
+		while (getline(File, Temp)) { Json += Temp; }
+		if (Json.empty()) { return; }
 	}
-
+	
 	rapidjson::Document Doc(rapidjson::kObjectType);
 	Doc.Parse(Json.data());
 
