@@ -147,6 +147,7 @@
     <ClCompile Include="CreateAccountTask.cpp" />
     <ClCompile Include="MISC\Utils.cpp" />
     <ClCompile Include="PrintAccountTask.cpp" />
+    <ClCompile Include="Task\AllPlayerLogout.cpp" />
     <ClCompile Include="Task\CreateAccountTask.cpp" />
     <ClCompile Include="Task\DeleteAccountTask.cpp" />
     <ClCompile Include="Task\LoginTask.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="MISC\Headers.h" />
     <ClInclude Include="MISC\Utils.h" />
     <ClInclude Include="PrintAccountTask.h" />
+    <ClInclude Include="Task\AllPlayerLogout.h" />
     <ClInclude Include="Task\CreateAccountTask.h" />
     <ClInclude Include="Task\DeleteAccountTask.h" />
     <ClInclude Include="Task\LoginTask.h" />

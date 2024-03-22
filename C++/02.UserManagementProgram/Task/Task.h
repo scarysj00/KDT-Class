@@ -6,3 +6,4 @@
 #include "LoginTask.h"
 #include "LogoutTask.h"
 #include "PrintLoginPlayerTask.h"
+#include "AllPlayerLogout.h"

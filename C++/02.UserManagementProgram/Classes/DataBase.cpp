@@ -1,4 +1,5 @@
 #include "DataBase.h"
+#include "Player.h"
 
 FDataBase GDataBase;
 
@@ -80,20 +81,25 @@ bool FDataBase::DeleteAccount(const FAccount& InAccount)
 
 	AccountMap.erase(InAccount.ID);
 
+	string DeleteFileCmd = "del /q .\\PlayerInfo\\" + InAccount.ID + ".json";
+	system(DeleteFileCmd.c_str());
+
 	return true;
 }
 
 FDataBase::FDataBase()
 {
-	Load();
+	LoadAccount();
 }
 
 FDataBase::~FDataBase()
 {
-	Save();
+	SaveAccount();
 }
 
-void FDataBase::Save()
+
+
+void FDataBase::SaveAccount()
 {
 	rapidjson::Document Doc(rapidjson::kObjectType);
 	rapidjson::Document::AllocatorType& Allocator = Doc.GetAllocator();
@@ -117,7 +123,7 @@ void FDataBase::Save()
 	File << Json;
 }
 
-void FDataBase::Load()
+void FDataBase::LoadAccount()
 {
 	std::ifstream File("AccountInfo.json");
 	if (!File.is_open())
@@ -158,4 +164,18 @@ void FDataBase::Load()
 			}
 		}
 	}
+}
+
+bool FDataBase::SavePlayer(FPlayer& InPlayer)
+{
+	FPlayerSaveLoader PlayerSaveLoder(InPlayer);
+	const bool bSave = PlayerSaveLoder.Save();
+	return bSave;
+}
+
+bool FDataBase::LoadPlayer(const FAccountName& InAccountName, FPlayer& OutPlayer)
+{
+	FPlayerSaveLoader PlayerSaveLoder(OutPlayer);
+	const bool bLoad = PlayerSaveLoder.Load(InAccountName);
+	return bLoad;
 }

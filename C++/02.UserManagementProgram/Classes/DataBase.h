@@ -2,9 +2,16 @@
 #include "MISC/Headers.h"
 #include "Account.h"
 
+// 전방 선언 : 이런 class가 있다.
+// Pointer나 Reference
+// class FPlayer;
+
 // FAccount의 컨테이너
 class FDataBase final
 {
+	friend struct FLoginTask;
+	friend class FLoginSession;
+
 public:
 	// 회원 가입
 	FAccount* CreateAccount(const FAccount& InAccount);
@@ -31,8 +38,11 @@ public:
 	~FDataBase();
 
 private:
-	void Save();
-	void Load();
+	void SaveAccount();
+	void LoadAccount();
+
+	bool SavePlayer(class FPlayer& InPlayer);
+	bool LoadPlayer(const FAccountName& InAccountName, class FPlayer& OutPlayer);
 
 private:
 	unordered_map<FAccountName, FAccount> AccountMap;

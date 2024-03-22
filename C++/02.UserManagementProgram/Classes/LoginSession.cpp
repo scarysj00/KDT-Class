@@ -38,6 +38,16 @@ bool FLoginSession::IsLogin(const FAccountName& InAccountName)
     return true;
 }
 
+FPlayer* FLoginSession::GetLoginPlayer(const FAccountName& InAccountName)
+{
+    auto It = PlayerMap.find(InAccountName);
+    if (It == PlayerMap.end())
+    {
+        return nullptr;
+    }
+    return &It->second;
+}
+
 pair<bool, const char*> FLoginSession::Logout(const FAccount& InAccount)
 {
     FAccount* Account = GDataBase.CheckAccount(InAccount);
@@ -53,8 +63,18 @@ pair<bool, const char*> FLoginSession::Logout(const FAccount& InAccount)
         return make_pair(false, "[Logout] 해당 플레이어가 로그인 하지 않았습니다.");
     }
 
+    GDataBase.SavePlayer(*GetLoginPlayer(InAccount.ID));
     PlayerMap.erase(InAccount.ID);
 
     return make_pair(true, "[Logout] 성공");
+}
+
+void FLoginSession::AllPlayerLogout()
+{
+    for (auto It : PlayerMap)
+    {
+        GDataBase.SavePlayer(*GetLoginPlayer(It.first));
+    }
+    PlayerMap.clear();
 }
 
