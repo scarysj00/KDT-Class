@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "KDT2",
+			"Path": "..\\Source\\KDT2.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "KDT2Editor",
+			"Path": "..\\Source\\KDT2Editor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
